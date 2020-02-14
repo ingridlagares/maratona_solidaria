@@ -1,0 +1,34 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    image: wordpress
+    container_name: maratona
+    restart: always
+    ports:
+      - 8070:80
+    volumes:
+      - ./html:/var/www/html
+      - ./config/php.ini:/usr/local/etc/php/conf.d/extra.ini
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: maratonauser
+      WORDPRESS_DB_PASSWORD: maratonapass
+      WORDPRESS_DB_NAME: maratonadb
+    depends_on:
+      - db
+    links:
+      - db
+  db:
+    image: mysql:5.7
+    container_name: mysql-maratona
+    restart: always
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: maratonadb
+      MYSQL_USER: maratonauser
+      MYSQL_PASSWORD: maratonapass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+

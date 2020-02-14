@@ -1,0 +1,168 @@
+
+/*
+Theme Name: MaratonaSolidária
+Author: Ingrid Lagares
+Description: Tema da Maratona Solidária do ICEx
+Version: 0.0.1
+Tags: boot
+*/
+
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #555;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+html { height:100%; margin:0; }
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  margin-top: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  color: #872226;
+}
+
+
+/*
+ * Override Bootstrap's default container.
+ */
+
+@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+  }
+}
+
+
+
+.header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.header img{
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.blog-title {
+  margin-top: 30px;
+  margin-bottom: 0;
+  font-size: 60px;
+  font-weight: normal;
+}
+.blog-description {
+  font-size: 20px;
+  color: #999;
+}
+
+#footer{
+    grid-row-start: 2;
+    grid-row-end: 3;
+    color: #595959;
+    font-size: 0.9em;
+    background-color: #bb2019;
+    text-align: center;
+    height: 100px;
+}
+#footer .info {
+    font-size: 100%;
+    width: 100%;
+    float: left;
+    margin: 0;
+    text-align: center;
+    color:
+    #fff;
+}
+#footer .info span {
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+#footer .info .endereco {
+    margin: 0 auto;
+    display: inline-flex;
+}
+
+#footer .info .endereco p {
+    float: right;
+    font-size: 100%;
+    margin: 0;
+    color:
+    #fff;
+    font-size: 11px;
+    line-height: 28px;
+}
+.page {
+    position: relative;
+}
+#footer a {
+    color:
+    #fff;
+    text-decoration: none;
+}
+.primary {
+      padding-bottom: 100px;    /* Footer height */
+      min-height: 100%;
+      margin: 0 auto -50px;
+}
+.title-content {
+    text-align: center;
+    display: block;
+    margin: 20px 10px 20px 0px;
+    border-bottom: 1px solid   #efefef;
+    text-align: center;
+}
+.container {
+    height: 70%;
+}
+.block-button {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  border: none;
+  background-color: #cc0000;
+  color: white;
+  padding: 14px 28px;
+  font-size: 36px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 6px;
+  min-width: 50px;
+   max-width: 900px;
+}
+.block-button:hover {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  border: none;
+  background-color: #ff3333;
+  color: white;
+  padding: 14px 28px;
+  font-size: 36px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 6px;
+  min-width: 50px;
+}
+.center{
+    text-align: center;
+    padding: 50px 30px;
+}
+.centralize {
+    margin: 0 auto;
+}
+.notpass:{
+
+}
