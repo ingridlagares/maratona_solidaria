@@ -22,7 +22,7 @@
         width: 50px;
     }
 </style>
-	<div class=".primary-mobile-nav primary">
+	<div class="primary-mobile-nav primary">
 		<div class="col-sm-8 blog-main">
             <!-- New Post Form -->
             <div id="postbox">

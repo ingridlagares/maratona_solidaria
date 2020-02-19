@@ -23,7 +23,7 @@
     }
 </style>
 	<div class="primary">
-		<div class="blog-main">
+		<div class="col-sm-8 blog-main">
             <!-- New Post Form -->
             <div id="postbox" >
             <form id="new_post" name="new_post" method="post" action="">

@@ -7,6 +7,7 @@
     <meta name="description" content=<?php echo get_bloginfo( 'description' ); ?>>
     <meta name="author" content="">
 
+
         <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 

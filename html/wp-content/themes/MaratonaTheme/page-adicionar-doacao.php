@@ -10,7 +10,7 @@
         width: 150px;
     }
     input[type="date"] {
-        width: 150px;
+        width: 180px;
     }
     input[type="button"] {
         width: 150px;
@@ -22,8 +22,8 @@
         width: 50px;
     }
 </style>
-	<div class="primary primary-mobile-nav">
-            <!-- New Post Form -->
+	<div class="primary">
+            <div class="col-sm-8 blog-main">
             <div id="postbox" >
             <form id="new_post" name="new_post" method="post" action="">
 
@@ -36,7 +36,7 @@
 
                 <tr>
                     <td class="title">Doação</td>
-                <td><input type="text" name="title" id="title" value=""></td>
+                    <td><input type="text" name="title" id="title" value=""></td>
                 </tr>
                 <tr>
             <td class="title">Tipo</td>
@@ -88,7 +88,7 @@
         </tr>
         <tr>
             <td class="title">Quantidade</td>
-        <td ><input type="number" min="1" name="doacao_fields[quantidade]" value=""></td>
+        <td ><input  type="number" min="1" name="doacao_fields[quantidade]" value=""></td>
         </tr>
 
         <tr>
@@ -120,11 +120,12 @@
     </table>
 
 
-            <p align="center"><input type="submit"  value="Submeter" tabindex="6" id="submit" name="submit" /></p>
+    <p align="center"><input type="submit"  value="Submeter" tabindex="6" id="submit" name="submit" /></p>
 
-            <input type="hidden" name="action" value="new_doacao" />
-            <?php wp_nonce_field( 'new-doacao' ); ?>
-            </form>
+    <input type="hidden" name="action" value="new_doacao" />
+    <?php wp_nonce_field( 'new-doacao' ); ?>
+    </form>
             </div>
+        </div>
 	</div> <!-- /.row -->
 <?php get_footer(); ?>
