@@ -34,11 +34,7 @@ function register_my_menus() {
 }
 add_action( 'init', 'register_my_menus' );
 
-function set_container_class($args) {
-    $args['container_class'] = str_replace('','-',$args['theme_location']).'-nav';
-    return $args;
-}
-add_filter('wp_nav_menu_args', 'set_container_class');
+
 
 function custom_settings_add_menu() {
 	add_menu_page( 'Custom Settings', 'Custom Settings', 'manage_options', 'custom-settings', 'custom_settings_page', null, 99 );
@@ -148,9 +144,7 @@ function include_template_function( $template_path ) {
             // otherwise serve the file from the plugin
             if ( $theme_file = locate_template( array ( 'single-aluno.php' ) ) ) {
                 $template_path = $theme_file;
-                echo $template_path;
             } else {
-                echo $template_path;
                 $template_path = plugin_dir_path( __FILE__ ) . '/single-aluno.php';
             }
         }
@@ -161,9 +155,7 @@ function include_template_function( $template_path ) {
             // otherwise serve the file from the plugin
             if ( $theme_file = locate_template( array ( 'single-doacao.php' ) ) ) {
                 $template_path = $theme_file;
-                echo $template_path;
             } else {
-                echo $template_path;
                 $template_path = plugin_dir_path( __FILE__ ) . '/single-doacao.php';
             }
         }
@@ -248,20 +240,7 @@ function display_doacao_meta_box( $doacao ) {
 
 
                 </select></td>
-    	        <tr>
-            <td class="title">Equipe</td>
-                <td><select name="doacao_fields[equipe]" id="doacao_fields[equipe]" style="width: 500px;">
-                    <option value="estatistica" <?php if (is_array($meta) && isset($meta['equipe'])) { selected( $meta['equipe'], 'estatistica' ); } ?>>Estatística</option>
-                    <option value="fisica" <?php if (is_array($meta) && isset($meta['equipe'])) { selected( $meta['equipe'], 'fisica' ); } ?>>Física</option>
-                    <option value="matcomp" <?php if (is_array($meta) && isset($meta['equipe'])) { selected( $meta['equipe'], 'matcomp' ); } ?>>Matemática Computacional</option>
-                    <option value="mat" <?php if (is_array($meta) && isset($meta['equipe'])) { selected( $meta['equipe'], 'mat' ); } ?>>Matemática</option>
-                    <option value="atuariais" <?php if (is_array($meta) && isset($meta['equipe'])) { selected( $meta['equipe'], 'atuariais' ); } ?>> Ciências Atuariais</option>
-                    <option value="quimica" <?php if (is_array($meta) && isset($meta['equipe'])) { selected( $meta['equipe'], 'quimica' ); } ?>>Química</option>
-                    <option value="ccsi" <?php if (is_array($meta) && isset($meta['equipe'])) { selected( $meta['equipe'], 'ccsi' ); } ?>>CC/SI</option>
 
-
-                </select></td>
-        </tr>
         <tr>
             <td class="title">Quantidade</td>
         <td ><input type="number" min="1" name="doacao_fields[quantidade]" value="<?php if (is_array($meta) && isset($meta['quantidade'])) {  echo $meta['quantidade']; } ?>"></td>
@@ -592,5 +571,110 @@ function my_login_redirect( $redirect_to, $request, $user ) {
 }
 
 add_filter( 'login_redirect', 'my_login_redirect', 10, 3 );
+
+function posts_for_current_author($query) {
+    global $pagenow;
+
+    if( 'edit.php' != $pagenow || !$query->is_admin )
+        return $query;
+
+    if( !current_user_can( 'edit_others_posts' ) ) {
+        global $user_ID;
+        $query->set('author', $user_ID );
+    }
+    return $query;
+}
+add_filter('pre_get_posts', 'posts_for_current_author');
+function tamanho_equipe($user){
+    $equipe = $user->user_login;
+    $args = array(
+        'numberposts'	=> -1,
+        'post_type'		=> 'aluno',
+    );
+    $tamanho = 0;
+    $the_query = new WP_Query( $args );
+    if( $the_query->have_posts() ):
+        while( $the_query->have_posts() ) : $the_query->the_post();
+            $post_id = get_the_ID();
+            $meta = get_post_meta( $post_id, 'aluno_fields', true );
+            if(  $meta['equipe'] == $equipe ):
+                $tamanho = $tamanho +1;
+            endif;
+        endwhile;
+    endif;
+    return $tamanho;
+}
+function calcular_pontuacao($user) {
+    $score = 0;
+    $args = array(
+        'numberposts'	=> -1,
+        'post_type'		=> 'doacao',
+        'author'        => $user->ID
+    );
+    $the_query = new WP_Query( $args );
+    if( $the_query->have_posts() ):
+        while( $the_query->have_posts() ) : $the_query->the_post();
+            $post_id = get_the_ID();
+            $meta = get_post_meta( $post_id, 'doacao_fields', true );
+            if( $meta['aprovado']):
+                if( $meta['doacao'] == 'oleo' || $meta['doacao'] == 'papel' || $meta['doacao'] == 'escola'   ):
+                    $pontos = $meta['quantidade'] * 20;
+                    $score = $score + $pontos;
+
+                elseif ($meta['doacao'] == 'farinha' || $meta['doacao'] == 'fuba' || $meta['doacao'] == 'sal' || $meta['doacao'] == 'escova' || $meta['doacao'] == 'pasta'):
+                    $pontos = $meta['quantidade'] * 5;
+                    $score = $score + $pontos;
+                elseif ($meta['doacao'] == 'arroz' || $meta['doacao'] == 'macarrao' || $meta['doacao'] == 'acucar' || $meta['doacao'] == 'sabonete' || $meta['doacao'] == 'feijao' || $meta['doacao'] == 'xampu' || $meta['doacao'] == 'condicionador' || $meta['doacao'] == 'cafe'  || $meta['doacao'] == 'condicionador' || $meta['doacao'] == 'absorvente' ):
+                    $pontos = $meta['quantidade'] * 10;
+                    $score = $score + $pontos;
+                elseif ($meta['doacao'] == 'biscoito'):
+                    $pontos = $meta['quantidade'] * 15;
+                    $score = $score + $pontos;
+                elseif ($meta['doacao'] == 'caderno'):
+                    $pontos = $meta['quantidade'] * 30;
+                    $score = $score + $pontos;
+                elseif ($meta['doacao'] == 'livro'):
+                    $pontos = $meta['quantidade'] * 40;
+                    $score = $score + $pontos;
+                elseif ($meta['doacao'] == 'apostila'):
+                    $pontos = $meta['quantidade'] * 60;
+                    $score = $score + $pontos;
+                elseif ($meta['doacao'] == 'fralda_geriatrica'):
+                    $pontos = $meta['quantidade'] * 80;
+                    $score = $score + $pontos;
+                elseif ($meta['doacao'] == 'racao'):
+                    $pontos = $meta['quantidade'] * 100;
+                    $score = $score + $pontos;
+                elseif ($meta['doacao'] == 'brinquedo' || $meta['doacao'] == 'lacre'):
+                    $pontos = $meta['quantidade'] * 50;
+                    $score = $score + $pontos;
+                elseif ($meta['doacao'] == 'medula' || $meta['doacao'] == 'sangue'):
+                    $pontos = $meta['quantidade'] * 150;
+                    $score = $score + $pontos;
+                elseif ($meta['doacao'] == 'fralda_infantil'):
+                    $pontos = $meta['quantidade'] * 200;
+                    $score = $score + $pontos;
+                endif;
+            endif;
+        endwhile;
+    endif;
+    $tamanho = tamanho_equipe($user);
+    if($tamanho):
+        $final =  $score/$tamanho;
+    else:
+        $final = 0;
+    endif;
+    return array ( $score, $tamanho, $final, $user->user_firstname);
+}
+function points_compare($element1, $element2) {
+    $datetime1 = $element1['pt_final'];
+    $datetime2 = $element2['pt_final'];
+    return $datetime1 - $datetime2;
+}
+
+function ordenar_equipes($equipes) {
+    usort($equipes, 'points_compare');
+    return array_reverse($equipes);
+}
 
 ?>

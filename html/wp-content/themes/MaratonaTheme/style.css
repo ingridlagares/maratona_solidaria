@@ -7,7 +7,53 @@ Version: 0.0.1
 Tags: boot
 */
 
+#barras_principal{
+  width:800px;
+  height:60px;
+  margin-left:10px;
+  font-family:Verdana, Helvetica, sans-serif;
+  font-size:14px;
+}
+#barras p{
+  margin-bottom: 2px;
+}
+#barras{
+  width:828px;
+  height:30px;
+  float:left;
+  margin: 0px 0 40px 0px;
+}
+.title_barra{
+    width:428px;
+    height:30px;
+    float:right;
+}
+.barra1, .barra2, .barra3, .barra4{
+  color:#FFF;
+  padding-left:10px;
+  line-height:30px;
+}
+.barra1 p, .barra2 p, .barra3 p, .barra4 p{
+    float: right;
+    padding-right: 10px;
+}
 
+.barra1{
+    background-color: #FF0000;
+    height: 30px;
+ }
+.barra2{
+    background-color: #0000FF;
+    height: 30px;
+}
+.barra3{
+    background-color: #FF6600;
+    height: 30px;
+ }
+.barra4{
+    background-color: #009933;
+    height: 30px;
+ }
 * {
   box-sizing: border-box;
 }
@@ -220,4 +266,22 @@ textarea {
 }
 #postbox {
     margin-bottom: 200px;
+}
+.container-main {
+    width: 80%;
+}
+.blog-main{
+        margin: 0 auto;
+}
+
+.listing a{
+        font-size: 25px;
+}
+
+.listing p{
+       font-size: 20px;
+}
+
+article {
+    font-size: 25px;
 }

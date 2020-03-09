@@ -22,6 +22,7 @@
         width: 50px;
     }
 </style>
+<div class="container">
 	<div class="primary">
 		<div class="col-sm-8 blog-main">
             <!-- New Post Form -->
@@ -40,7 +41,7 @@
                 <td><input type="text" name="title" id="title" value=""></td>
                 </tr>
                 <tr>
-                    <td class="title">Doador (Externo)</td>
+                    <td class="title">Nome do Doador (Externo)</td>
                 <td><input type="text" name="doacao_fields[doador]" value=""></td>
                 </tr>
                 <tr>
@@ -77,20 +78,7 @@
 
 
                 </select></td>
-    	        <tr>
-            <td class="title">Equipe</td>
-                <td><select name="doacao_fields[equipe]" id="doacao_fields[equipe]" style="width: 500px;">
-                    <option value="estatistica">Estatística</option>
-                    <option value="fisica">Física</option>
-                    <option value="matcomp">Matemática Computacional</option>
-                    <option value="mat">Matemática</option>
-                    <option value="atuariais"> Ciências Atuariais</option>
-                    <option value="quimica">Química</option>
-                    <option value="ccsi">CC/SI</option>
 
-
-                </select></td>
-        </tr>
         <tr>
             <td class="title">Quantidade</td>
         <td ><input type="number" min="1" name="doacao_fields[quantidade]" value=""></td>

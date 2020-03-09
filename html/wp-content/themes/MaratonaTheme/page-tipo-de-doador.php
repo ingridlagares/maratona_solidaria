@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+<div class="container">
 <div class="primary">
     <div id="content" role="main">
          <a href="/adicionar-doacao" ><button type="button" class="block-button">Aluno doador possui cadastro</button></a></br>
