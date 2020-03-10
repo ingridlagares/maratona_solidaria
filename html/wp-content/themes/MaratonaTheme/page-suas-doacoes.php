@@ -15,8 +15,12 @@
 
         // query
         $the_query = new WP_Query( $args );
-        calcular_pontuacao( wp_get_current_user());
+        list ($equipe["pt_total"], $equipe["tam"], $equipe["pt_final"],$equipe["equipe"])  = calcular_pontuacao( wp_get_current_user() );
         ?>
+        <h3><?php echo $equipe["equipe"];?></h3>
+        <p>Pontuação total da sua equipe: <?php echo $equipe["pt_total"];?></p>
+        <p>Quantidade de membros: <?php  echo $equipe["tam"]; ?></p>
+        <p>Pontuação final: <?php  echo $equipe["pt_final"];?></p>
         <?php if( $the_query->have_posts() ): ?>
         	<ul class="listing">
         	<?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>

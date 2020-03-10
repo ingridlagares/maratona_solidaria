@@ -41,22 +41,18 @@
                 <tr>
                     <td class="title">Matrícula</td>
                 <td ><input type="number" min="0" name="aluno_fields[matricula]" value=""></td>
+                <?php
+                $user = wp_get_current_user();
+                ?>
                 </tr>
+                <tr>
                     <td class="title">Curso</td>
                         <td><select name="aluno_fields[equipe]" id="aluno_fields[equipe]" style="width: 500px;">
-                            <option value="estatistica">Estatística</option>
-                            <option value="fisica">Física</option>
-                            <option value="matcomp">Matemática Computacional</option>
-                            <option value="mat">Matemática</option>
-                            <option value="atuariais"> Ciências Atuariais</option>
-                            <option value="quimica">Química</option>
-                            <option value="ccsi">CC/SI</option>
+                            <option value=<?php echo $user->user_login?>><?php echo $user->user_firstname?></option>
 
 
                         </select></td>
                 </tr>
-
-
 
         		<tr>
                     <td class="title">Email</td>

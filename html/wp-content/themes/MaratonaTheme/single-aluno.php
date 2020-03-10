@@ -35,8 +35,6 @@
         $args = array(
             'numberposts'	=> -1,
             'post_type'		=> 'doacao',
-            'meta_key'		=>  $meta['quantidade'],
-	        'meta_value_num'	=> '1',
         );
         $the_query = new WP_Query( $args );
         ?>

@@ -602,6 +602,7 @@ function tamanho_equipe($user){
             endif;
         endwhile;
     endif;
+
     return $tamanho;
 }
 function calcular_pontuacao($user) {
@@ -616,6 +617,7 @@ function calcular_pontuacao($user) {
         while( $the_query->have_posts() ) : $the_query->the_post();
             $post_id = get_the_ID();
             $meta = get_post_meta( $post_id, 'doacao_fields', true );
+
             if( $meta['aprovado']):
                 if( $meta['doacao'] == 'oleo' || $meta['doacao'] == 'papel' || $meta['doacao'] == 'escola'   ):
                     $pontos = $meta['quantidade'] * 20;

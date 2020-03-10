@@ -9,7 +9,7 @@ Tags: boot
 
 #barras_principal{
   width:800px;
-  height:60px;
+  min-height: 60px;
   margin-left:10px;
   font-family:Verdana, Helvetica, sans-serif;
   font-size:14px;
@@ -28,32 +28,44 @@ Tags: boot
     height:30px;
     float:right;
 }
-.barra1, .barra2, .barra3, .barra4{
+.barra1, .barra2, .barra3, .barra4, .barra5, .barra6, .barra7{
   color:#FFF;
   padding-left:10px;
   line-height:30px;
 }
-.barra1 p, .barra2 p, .barra3 p, .barra4 p{
+.barra1 p, .barra2 p, .barra3 p, .barra4 p, .barra5 p, .barra6 p, .barra7 p{
     float: right;
     padding-right: 10px;
 }
 
 .barra1{
-    background-color: #FF0000;
+    background-color: #DF0101;
     height: 30px;
  }
 .barra2{
-    background-color: #0000FF;
+    background-color: #468531;
     height: 30px;
 }
 .barra3{
-    background-color: #FF6600;
+    background-color: #013ADF;
     height: 30px;
  }
 .barra4{
-    background-color: #009933;
+    background-color: #B4045F;
     height: 30px;
  }
+ .barra5{
+     background-color: #D7DF01;
+     height: 30px;
+ }
+ .barra6{
+     background-color: #8904B1;
+     height: 30px;
+  }
+ .barra7{
+     background-color: #04B4AE;
+     height: 30px;
+  }
 * {
   box-sizing: border-box;
 }
